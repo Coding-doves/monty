@@ -18,6 +18,10 @@ int main(int argc, char **argv)
 		{"pop", _pop},
 		{"swap", _swap},
 		{"add", _add},
+		{"mul", _mul},
+		{"sub", _sub},
+		{"div", _div},
+		{"mod", _mod},
 		{"nop", _nop},
 		{NULL, NULL}
 	};
