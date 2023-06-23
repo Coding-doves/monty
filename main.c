@@ -93,7 +93,7 @@ void read_parse_exec(FILE *file, instruction_t *pair, stack_t **stack)
 			}
 			if (start->opcode == NULL)
 			{
-				fprintf(stderr, "L%d: unknown instruction %s", line_number, start->opcode);
+				fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode_tok);
 				exit(EXIT_FAILURE);
 			}
 		}
