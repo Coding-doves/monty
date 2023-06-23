@@ -23,6 +23,7 @@ int main(int argc, char **argv)
 		{"div", _div},
 		{"mod", _mod},
 		{"nop", _nop},
+		{"pchar", _pchar},
 		{NULL, NULL}
 	};
 	FILE *m;
@@ -42,14 +43,21 @@ int main(int argc, char **argv)
 	read_parse_exec(m, pair, &stack);
 
 	fclose(m);
-	/* clean up stack after file is closed*/
+	clean_up(&stack);
+	
+	return (0);
+}
+
+void clean_up(stack_t **stack) 
+{
+/* clean up stack after file is closed*/
 	while (stack != NULL)
-	{ stack_t *tmp = stack;
+	{
+		stack_t *tmp = stack;
 
 		stack = stack->next;
-		free(tmp);
+		free(tmp);						        }
 	}
-	return (0);
 }
 
 /**
