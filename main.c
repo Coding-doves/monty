@@ -23,6 +23,7 @@ int main(int argc, char **argv)
 		{"div", _div},
 		{"mod", _mod},
 		{"nop", _nop},
+		{"pchar", _pchar},
 		{NULL, NULL}
 	};
 	FILE *m;
@@ -81,7 +82,11 @@ void read_parse_exec(FILE *file, instruction_t *pair, stack_t **stack)
 
 			while (start->opcode != NULL)
 			{
-				if (strcmp(start->opcode, opcode_tok) == 0)
+	/*	if (opcode_tok[0] == '#')
+		{
+			 _nop(stack, line_number);
+		}
+	*/			if (strcmp(start->opcode, opcode_tok) == 0)
 				{
 					start->f(stack, line_number);
 					break;

@@ -9,7 +9,7 @@
 void _push(stack_t **stack, unsigned int line_number)
 {
 	char *count_args;
-	int val;
+	int val, i;
 	stack_t *insert;
 
 	count_args = strtok(NULL, " \n");
@@ -19,12 +19,15 @@ void _push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	val = atoi(count_args);
-	if (val == 0 && count_args[0] != '0')
+	for (i = 0; count_args[i] != '\0'; i++)
 	{
-		fprintf(stderr, "L%d: usage push integer\n", line_number);
-		exit(EXIT_FAILURE);
+		if (!isdigit(count_args[i]) && count_args[i] != '-')
+		{
+			fprintf(stderr, "L%d: usage push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
 	}
+	val = atoi(count_args);
 
 	insert = malloc(sizeof(stack_t));
 	if (insert == NULL)

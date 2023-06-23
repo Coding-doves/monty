@@ -5,6 +5,7 @@
 #define _GNU_SOURCE
 
 #include <stdio.h>
+#include <ctype.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -48,6 +49,7 @@ void _mul(stack_t **stack, unsigned int line_number);
 void _div(stack_t **stack, unsigned int line_number);
 void _mod(stack_t **stack, unsigned int line_number);
 void _nop(stack_t **stack, unsigned int line_number);
+void _pchar(stack_t **stack, unsigned int line_number);
 void read_parse_exec(FILE *file, instruction_t *pair, stack_t **stack);
 
 #endif
