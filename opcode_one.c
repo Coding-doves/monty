@@ -22,8 +22,8 @@ void _push(stack_t **stack, unsigned int line_number)
 	val = atoi(count_args);
 	if (val == 0 && count_args[0] != '0')
 	{
-                fprintf(stderr, "L%d: usage push integer\n", line_number);
-                exit(EXIT_FAILURE);
+		fprintf(stderr, "L%d: usage push integer\n", line_number);
+		exit(EXIT_FAILURE);
 	}
 
 	insert = malloc(sizeof(stack_t));
@@ -52,7 +52,7 @@ void _pall(stack_t **stack, unsigned int line_number)
 	stack_t *start = (*stack);
 
 	(void)line_number;
-	
+
 	if (start == NULL)
 		return;
 

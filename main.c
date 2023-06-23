@@ -32,7 +32,6 @@ int main(int argc, char **argv)
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-
 	m = fopen(argv[1], "r");
 	if (m == NULL)
 	{
@@ -43,11 +42,9 @@ int main(int argc, char **argv)
 	read_parse_exec(m, pair, &stack);
 
 	fclose(m);
-
 	/* clean up stack after file is closed*/
 	while (stack != NULL)
-	{
-		stack_t *tmp = stack;
+	{ stack_t *tmp = stack;
 
 		stack = stack->next;
 		free(tmp);
