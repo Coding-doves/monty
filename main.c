@@ -24,6 +24,9 @@ int main(int argc, char **argv)
 		{"mod", _mod},
 		{"nop", _nop},
 		{"pchar", _pchar},
+		{"pstr", _pstr},
+		{"rotl", _rotl},
+		{"rotr", _rotr},
 		{NULL, NULL}
 	};
 	FILE *m;
@@ -48,15 +51,18 @@ int main(int argc, char **argv)
 	return (0);
 }
 
+/**
+ * clean_up -  clean up stack after file is closed
+ * @stack: content on stack
+ */
 void clean_up(stack_t **stack) 
 {
-/* clean up stack after file is closed*/
-	while (stack != NULL)
+	while (*stack != NULL)
 	{
-		stack_t *tmp = stack;
+		stack_t *tmp = *stack;
 
-		stack = stack->next;
-		free(tmp);						        }
+		*stack = (*stack)->next;
+		free(tmp);
 	}
 }
 

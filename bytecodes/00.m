@@ -1,6 +1,8 @@
-push 1
-        push           2                 
-push 3
-push -1024
+push 72
+pchar
+        push          122                 
+pchar
+push 1000 
+pchar
 #uuuuu              
 pall
