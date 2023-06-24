@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 
 	fclose(m);
 	clean_up(&stack);
-	
+
 	return (0);
 }
 
@@ -55,7 +55,7 @@ int main(int argc, char **argv)
  * clean_up -  clean up stack after file is closed
  * @stack: content on stack
  */
-void clean_up(stack_t **stack) 
+void clean_up(stack_t **stack)
 {
 	while (*stack != NULL)
 	{
