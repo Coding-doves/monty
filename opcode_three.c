@@ -10,7 +10,7 @@ void _mod(stack_t **stack, unsigned int line_number)
 	stack_t *start;
 	int hold;
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
 		free(*stack);
@@ -24,13 +24,13 @@ void _mod(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
-		start = *stack;
+		start = (*stack)->next;
 
-		hold = start->next->n % start->n;
+		hold = start->n % (*stack)->n;
 
-		start->next->n = hold;
-		*stack = start->next;
-		free(start);
+		free(*stack);
+		start->n = hold;
+		*stack = start;
 	}
 }
 
@@ -43,7 +43,7 @@ void _pchar(stack_t **stack, unsigned int line_number)
 {
 	int start;
 
-	if (*stack == NULL)
+	if (stack == NULL || *stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
@@ -70,7 +70,7 @@ void _pstr(stack_t **stack, unsigned int line_number)
 
 	(void)line_number;
 
-	if (*stack == NULL)
+	if (stack == NULL || *stack == NULL)
 	{
 		printf("\n");
 		exit(EXIT_FAILURE);
@@ -95,20 +95,22 @@ void _pstr(stack_t **stack, unsigned int line_number)
  */
 void _rotl(stack_t **stack, unsigned int line_number)
 {
-	stack_t *front = *stack;
-	stack_t *back = NULL;
+	stack_t *tmp = *stack;
 	stack_t *start = *stack;
 
 	(void)line_number;
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+		 return;
 
 	while (start->next != NULL)
-	{
 		start = start->next;
-	}
+
 	*stack = (*stack)->next;
-	start->next = front;
-	front->prev = start;
-	front->next = back;
+	(*stack)->prev = tmp->prev;
+
+	tmp->next = start->next;
+	tmp->prev = start;
+	start->next = tmp;
 }
 
 /**
@@ -119,20 +121,22 @@ void _rotl(stack_t **stack, unsigned int line_number)
  */
 void _rotr(stack_t **stack, unsigned int line_number)
 {
-	stack_t *front = *stack;
 	stack_t *back;
 	stack_t *start = *stack;
 
 	(void)line_number;
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+		 return;
 
 	while (start->next != NULL)
-	{
 		start = start->next;
-	}
+
 	back = start->prev;
-	start->next = front;
-	start->prev = NULL;
-	front->prev = start;
+	back->next = start->next;
+
+	start->next = *stack;
+	start->prev = (*stack)->prev;
+
+	(*stack)->prev = start;
 	*stack = start;
-	back->next = NULL;
 }
