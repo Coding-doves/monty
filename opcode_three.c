@@ -67,21 +67,23 @@ void _pchar(stack_t **stack, unsigned int line_number)
 void _pstr(stack_t **stack, unsigned int line_number)
 {
 	int val;
+	stack_t *start;
 
 	(void)line_number;
 
 	if (stack == NULL || *stack == NULL)
 	{
 		printf("\n");
-		exit(EXIT_FAILURE);
+		return;
 	}
+	start = *stack;
 
-	while (*stack != NULL && val != 0)
+	while (start != NULL && val != 0)
 	{
-		val = (*stack)->n;
+		val = start->n;
 		if (isascii(val))
 			printf("%c", val);
-		*stack = (*stack)->next;
+		start = start->next;
 	}
 	printf("\n");
 }
