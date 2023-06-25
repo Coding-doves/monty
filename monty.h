@@ -38,6 +38,17 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * enum mode - mode for stack or queue
+ * Description: use to switch to prefered choice: stack, queues, LIFO, FIFO
+ */
+typedef enum mode
+{
+	STACK,
+	QUEUE
+} Mode;
+extern Mode choice;
+
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 void _pint(stack_t **stack, unsigned int line_number);
@@ -53,6 +64,8 @@ void _pchar(stack_t **stack, unsigned int line_number);
 void _pstr(stack_t **stack, unsigned int line_number);
 void _rotl(stack_t **stack, unsigned int line_number);
 void _rotr(stack_t **stack, unsigned int line_number);
+void _queue(stack_t **stack, unsigned int line_number);
+void _stack(stack_t **stack, unsigned int line_number);
 void read_parse_exec(FILE *file, instruction_t *pair, stack_t **stack);
 void clean_up(stack_t **stack);
 

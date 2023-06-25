@@ -12,20 +12,14 @@ int main(int argc, char **argv)
 {
 	stack_t *stack = NULL;
 	instruction_t pair[] = {
-		{"push", _push},
-		{"pall", _pall},
-		{"pint", _pint},
-		{"pop", _pop},
-		{"swap", _swap},
-		{"add", _add},
-		{"mul", _mul},
-		{"sub", _sub},
-		{"div", _div},
-		{"mod", _mod},
-		{"nop", _nop},
-		{"pchar", _pchar},
-		{"pstr", _pstr},
-		{"rotl", _rotl},
+		{"push", _push}, {"queue", _queue},
+		{"pall", _pall}, {"stack", _stack},
+		{"pint", _pint}, {"pop", _pop},
+		{"swap", _swap}, {"add", _add},
+		{"mul", _mul}, {"sub", _sub},
+		{"div", _div}, {"mod", _mod},
+		{"nop", _nop}, {"pchar", _pchar},
+		{"pstr", _pstr}, {"rotl", _rotl},
 		{"rotr", _rotr},
 		{NULL, NULL}
 	};

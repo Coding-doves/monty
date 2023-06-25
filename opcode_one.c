@@ -10,9 +10,9 @@ void _push(stack_t **stack, unsigned int line_number)
 {
 	char *count_args;
 	int val, i;
-	stack_t *insert;
+	stack_t *insert, *tail;
 
-	count_args = strtok(NULL, " \n");
+	count_args = strtok(NULL, " \n\t\r");
 	if (count_args == NULL)
 	{
 		fprintf(stderr, "L%d: usage push integer\n", line_number);
@@ -29,20 +29,42 @@ void _push(stack_t **stack, unsigned int line_number)
 	}
 	val = atoi(count_args);
 
+	tail = *stack;
 	insert = malloc(sizeof(stack_t));
 	if (insert == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		free(insert);
 		exit(EXIT_FAILURE);
 	}
 
-		insert->n = val;
-		insert->prev = NULL;
+	insert->n = val;
+	insert->prev = NULL;
+	insert->next = NULL;
+
+	if (choice == STACK)
+	{
 		insert->next = (*stack);
 		if (*stack != NULL)
 			(*stack)->prev = insert;
 		(*stack) = insert;
+	}
+	else if (choice == QUEUE)
+	{
+		if (*stack == NULL)
+		{
+			*stack = insert;
+			tail = insert;
+		}
+		else
+		{
+			while (tail->next != NULL)
+				tail = tail->next;
+			insert->prev = tail;
+			tail->next = insert;
+			tail = insert;
+		}
+	}
 }
 
 /**
