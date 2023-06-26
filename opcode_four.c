@@ -1,7 +1,6 @@
 #include "monty.h"
 
-Mode choice = STACK;
-
+Mode choice = QUEUE;
 /**
  * _queue - sets the format of the data to a queue (FIFO).
  * @stack: pointer to top stack element

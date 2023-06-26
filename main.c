@@ -117,6 +117,7 @@ void read_parse_exec(FILE *file, instruction_t *pair, stack_t **stack)
 int countArg_checkDig(char *count_args, unsigned int line_number)
 {
 	int val, i;
+
 	if (count_args == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
