@@ -9,31 +9,16 @@
 void _push(stack_t **stack, unsigned int line_number)
 {
 	char *count_args;
-	int val, i;
+	int val;
 	stack_t *insert, *tail;
 
 	count_args = strtok(NULL, " \n\t\r");
-	if (count_args == NULL)
-	{
-		fprintf(stderr, "L%d: usage push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-
-	for (i = 0; count_args[i] != '\0'; i++)
-	{
-		if (!isdigit(count_args[i]) && count_args[i] != '-')
-		{
-			fprintf(stderr, "L%d: usage push integer\n", line_number);
-			exit(EXIT_FAILURE);
-		}
-	}
-	val = atoi(count_args);
+	val = countArg_checkDig(count_args, line_number);
 
 	tail = *stack;
 	insert = malloc(sizeof(stack_t));
 	if (insert == NULL)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
+	{ fprintf(stderr, "USAGE: monty file\n");
 		free(insert);
 		exit(EXIT_FAILURE);
 	}
@@ -41,10 +26,8 @@ void _push(stack_t **stack, unsigned int line_number)
 	insert->n = val;
 	insert->prev = NULL;
 	insert->next = NULL;
-
 	if (choice == STACK)
-	{
-		insert->next = (*stack);
+	{ insert->next = (*stack);
 		if (*stack != NULL)
 			(*stack)->prev = insert;
 		(*stack) = insert;
@@ -52,8 +35,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	else if (choice == QUEUE)
 	{
 		if (*stack == NULL)
-		{
-			*stack = insert;
+		{ *stack = insert;
 			tail = insert;
 		}
 		else

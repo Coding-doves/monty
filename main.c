@@ -109,3 +109,27 @@ void read_parse_exec(FILE *file, instruction_t *pair, stack_t **stack)
 	}
 }
 
+/**
+ * countArg_checkDig - count argument and checck f it is a digi
+ * @count_args: argument
+ * Return: int
+ */
+int countArg_checkDig(char *count_args, unsigned int line_number)
+{
+	int val, i;
+	if (count_args == NULL)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	for (i = 0; count_args[i] != '\0'; i++)
+	{
+		if (!isdigit(count_args[i]) && count_args[i] != '-')
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
+	}
+	val = atoi(count_args);
+	return (val);
+}

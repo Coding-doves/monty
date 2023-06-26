@@ -83,6 +83,7 @@ $ ./monty bytecodes/00.m
 	* sets the format of the data to a stack (LIFO). This is the default behavior of the program.
 - brainfuck
 	* prints "School"
+	* adds single digit below 10
 #
 **The Monty language**
 
